@@ -5,20 +5,28 @@ Topic discussed in [related issue](https://github.com/Oppskrift/oppskrift_api/is
 
 Property | Type | Description | Exemples | Comments | 
 ------------ | ------------- | ------------- | ------------- | ------------- |
-name | String | Explicit | `Avocado toast` | ✔️ |
-author | String | Explicit | `Martin` | ✔️ |
-description | String | Explicit | `Some dummy description...` | ✔️ |
-image | String | Explicit | `dummyUrl` | Could it be an array of images ? |
-cookTime | Duration in ISO format | Explicit | `PT40M` | ✔️ |
-recipeCategory | String | Explicit | `dessert` | Could a recipe have several categories ? |
-recipeCuisine | String | type of cuisine (French, Mexican, …) | `Japanese` | Could a recipe have several cuisines ? |
-recipeIngredient | Array | List of ingredients | `['salt', 'pepper', 'cucumber']` | schema.org says it's a single ingredient but it's a list of ingredients |
-recipeInstructions | Array | Explicit | `['wash salad', 'cut salad']` | ✔️ |
-recipeYield | Number | quantity produced (number of servings, number of people) | `6` | Does it needs a related variable unit ? |
-suitableForDiet | ??? | Explicit | --- | Need an example |
-estimatedCost | Number | Explicit | --- | Not sure it is needed because mainly relative to regions/countries, if we keep, what about currency ? |
-prepTime | Number | Explicit | `3600` | Need to select a unit |
-**Properties from Recipe** | ??? | Specific properties related to a Recipe | --- | --- |
+name | `String` | Explicit | `Avocado toast` | ✔️ |
+author | `String` | Explicit | `Martin` | ✔️ |
+description | `String` | Explicit | `Some dummy description...` | ✔️ |
+image | `String` | Explicit | `dummyUrl` | Could it be an array of images ? |
+cookTime | Duration in `ISO` format | Explicit | `PT40M` | ✔️ |
+recipeCategory | `String or Array<String>` | Explicit | `dessert` | Could a recipe have several categories ? |
+recipeCuisine | `String or Array<String>` | type of cuisine (French, Mexican, …) | `Japanese` | Could a recipe have several cuisines ? |
+recipeIngredients | `Array<String or Object>` | List of ingredients | `['salt', 'pepper', 'cucumber']` | Is it raw ingredient or is it computed one with qty and unit ? |
+recipeInstructions | `Array<String>` | Explicit | `['wash salad', 'cut salad']` | ✔️ |
+recipeYield | `Number or String` | quantity produced (number of servings, number of people) | `6` | Does it needs a related variable unit ? |
+suitableForDiet | `Array<String>` | Explicit | `['vegan', 'gluten free']` | ✔️ |
+prepTime | `Number` | Explicit | `3600` | Need to select a unit ? |
+url | `String` | Explicit | `http://dummy-url` | Only for JSON-LD |
+tools | `Array<String>` | Cooking tool to perform recipe | `['oven', 'mixer']` | Optional ✔️ |
+totalTime | `Number` | Explicit | `3600` | Need to select a unit ? Calculated |
+dateCreated | `Date` | Explicit | --- | ✔️ |
+dateModified | `Date` | Explicit | --- | ✔️ |
+datePublished | `Date` | Explicit | --- | ✔️ |
+discussionUrl | `String` | Explicit | `http://dummy-url` | Maybe not persisted |
+language | language in `IETF BCP 47` Standard | Explicit | `fr` | ✔️ |
+isFamilyFriendly | `Boolean` | Need a bit of explanation here | `false` | ✔️ |
+isPartOf | ??? | Need insights here too | --- | --- |
 
 JSON example of a recipe
 ```json
