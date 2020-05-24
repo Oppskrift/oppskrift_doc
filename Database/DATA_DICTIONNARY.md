@@ -3,30 +3,31 @@ Topic discussed in [related issue](https://github.com/Oppskrift/oppskrift_api/is
 
 ## Recipe
 
-Property | Type | Description | Exemples | Comments | 
+Property | Type | Description | Examples | Is calculated (not persisted) | Comments |
 ------------ | ------------- | ------------- | ------------- | ------------- |
-name | `String` | Explicit | `Avocado toast` | ✔️ |
-author | `String` | Explicit | `Martin` | ✔️ |
-description | `String` | Explicit | `Some dummy description...` | ✔️ |
-image | `String` | Explicit | `dummyUrl` | Could it be an array of images ? |
-cookTime | Duration in `ISO` format | Explicit | `PT40M` | ✔️ |
-recipeCategory | `String or Array<String>` | Explicit | `dessert` | Could a recipe have several categories ? |
-recipeCuisine | `String or Array<String>` | type of cuisine (French, Mexican, …) | `Japanese` | Could a recipe have several cuisines ? |
-recipeIngredients | `Array<String or Object>` | List of ingredients | `['salt', 'pepper', 'cucumber']` | Is it raw ingredient or is it computed one with qty and unit ? |
-recipeInstructions | `Array<String>` | Explicit | `['wash salad', 'cut salad']` | ✔️ |
-recipeYield | `Number or String` | quantity produced (number of servings, number of people) | `6` | Does it needs a related variable unit ? |
-suitableForDiet | `Array<String>` | Explicit | `['vegan', 'gluten free']` | ✔️ |
-prepTime | `Number` | Explicit | `3600` | Need to select a unit ? |
-url | `String` | Explicit | `http://dummy-url` | Only for JSON-LD |
-tools | `Array<String>` | Cooking tool to perform recipe | `['oven', 'mixer']` | Optional ✔️ |
-totalTime | `Number` | Explicit | `3600` | Need to select a unit ? Calculated |
-dateCreated | `Date` | Explicit | --- | ✔️ |
-dateModified | `Date` | Explicit | --- | ✔️ |
-datePublished | `Date` | Explicit | --- | ✔️ |
-discussionUrl | `String` | Explicit | `http://dummy-url` | Maybe not persisted |
-language | language in `IETF BCP 47` Standard | Explicit | `fr` | ✔️ |
-isFamilyFriendly | `Boolean` | Need a bit of explanation here | `false` | ✔️ |
-isPartOf | ??? | Need insights here too | --- | --- |
+name | `String` | Explicit | `Avocado toast` | |  |
+author | `String` | Explicit | `Martin` |  |  |
+description | `String` | Explicit | `Some dummy description...` |  | Optional |
+image | `String or Array<String>` | Explicit | `dummyUrl` |  | Single url or array of urls, Optional |
+cookTime | Duration in `ISO` format | Explicit | `PT40M` | Optional |
+recipeCategory | `String or Array<String>` | Explicit | `dessert` |  |  |
+recipeCuisine | `String` | type of cuisine (French, Mexican, …) | `Japanese` |  | Optional |
+recipeIngredients | `Array<String or Object>` | List of ingredients | `['salt', 'pepper', ' 1 cucumber', '200ml milk']` | Is it raw ingredient or is it computed one with qty and unit ? |
+recipeInstructions | `Array<String>` | Explicit | `['wash salad', 'cut salad']` |  |  |
+recipeYield | `String` | quantity produced (number of servings, number of people) | `1 loaf`, `300g of salad`, `12 servings` or `4 personnes` |  |  |
+suitableForDiet | `Array<String>` | Explicit | `['vegan', 'gluten free']` |  | Optional |
+prepTime | Duration in `ISO` format | Explicit | `3600` |  |  |
+waitTime | Duration in `ISO` format | Explicit | `3600` |  | Optional |
+url | `String` | Explicit | `http://dummy-url` | ✔️ | Only for JSON-LD |
+tools | `Array<String>` | Cooking tool to perform recipe | `['oven', 'mixer']` |  | Optional |
+totalTime | Duration in `ISO` format | Explicit | `3600` | ✔️ | =cookTime+prepTime+waitTime | 
+dateCreated | `Date` | Explicit | --- |  |  |
+dateModified | `Date` | Explicit | --- |  |  |
+datePublished | `Date` | Explicit | --- |  |  |
+discussionUrl | `String` | Explicit | `http://dummy-url` | ✔️ |
+language | language in `IETF BCP 47` Standard | Explicit | `fr-fr` |  |
+isFamilyFriendly | `Boolean` | Is the content of the recipe limited to an adult audience (false) or is it ok for a family audience (true) | `false` |  | Let's not fool ourselves, dick-shaped recipes (pictures) and unthinkable ingredients can be published by anyone |
+isPartOf | ??? | Need insights here too | --- | --- | Is discussed for now |
 
 JSON example of a recipe
 ```json
@@ -37,9 +38,8 @@ JSON example of a recipe
     "createdAt": "2004-04-28T08:56:00+02:00",
     "prepTime": "PT40M",
     "cookTime": "PT30M",
-    "totalTime": "PT70M", // Virtual ?
-    "recipeYield": 6,
-    // @todo discuss data type here
+    "totalTime": "PT70M", // Virtual !
+    "recipeYield": "6 servings",
     "recipeIngredient": [
         "300 g de farine",
         "200 g de beurre",
@@ -51,7 +51,6 @@ JSON example of a recipe
         "2 cuill\u00e8res \u00e0 soupe de kirsch",
         "1 jaune d'oeuf pour dorer"
     ],
-    // @todo discuss data type here
     "recipeInstructions": [
         {
             "@type": "HowToStep",
