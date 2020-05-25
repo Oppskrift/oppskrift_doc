@@ -30,6 +30,7 @@ isFamilyFriendly | `Boolean` | Is the content of the recipe limited to an adult 
 isPartOf | `String or Array<String>` | This recipe is part of an other recipe | `spaghetti bolognese` |  |  |
 
 JSON example of a recipe
+
 ```json
 {
     "name": "Tourte aux cerises",
@@ -88,5 +89,66 @@ JSON example of a recipe
     "author": "Annick",
     "description": "farine, beurre, sucre semoule, oeuf, sel, cerise, sucre semoule, kirsch, jaune d'oeuf",
     "recipeCuisine": "French",
+}
+```
+
+## Cookbook
+
+General questions :
+
+- Can a user have several cookbooks or is it one cookbook by user ?
+- Do we rely on recipes' categories to sort the cookbook ?
+
+Property | Type | Description | Examples | Is calculated (not persisted) | Comments |
+------------ | ------------- | ------------- | ------------- | ------------- | ----- |
+label | `String` | Explicit | `My dessert cookbook` | | |
+owner | `String` | Explicit | `Martin Moreau` | | I don't know if we plan to have groups of users that can own a cookbook |
+description | `String` | Explicit | `My dessert cookbook` | | Could also be named summary |
+public | `Boolean` | Wether it is public or not | `true` | | Not sure about this |
+recipes | ??? | Explicit | ??? | | Depending on chosen database, it is wether a key, a ref or an embedded document ? |
+recipesCount | `Number` | Explicit | `127` | Should be | |
+
+JSON example of a cookbook
+
+```json
+{
+    "label": "Les recettes de ma grand-mere",
+    "owner": "Martin Moreau",
+    "description": "Toutes les recettes favorites de mamie Georgette, du lapin en giblotte au riz au lait",
+    "public": false,
+    "recipes": ["lapin en giblotte", "riz au lait"],
+    "createdAt": "2004-04-28T08:56:00+02:00",
+}
+```
+
+## User
+
+General questions :
+
+- Do we implement social features like followers, groups, likes, etc. I think so and you ?
+- Thus group would be an other model
+
+Property | Type | Description | Examples | Is calculated (not persisted) | Comments |
+------------ | ------------- | ------------- | ------------- | ------------- | ----- |
+email | `String` | Explicit | `foo@bar.com` | | |
+name | `String` | Explicit | `serial_cooker33` | | Is it better not to store true identity... though we have email already ? |
+password | `String` | Explicit | `sd$%12s4sdfPv45` | | Hashed password |
+followers | `Array<String>` | Explicit | `['Martin Moreau']` | | Depending on chosen database, it is wether a key, a ref or an embedded document ? |
+following | `Array<String>` | Explicit | `['Georgette Moreau']` | | Depending on chosen database, it is wether a key, a ref or an embedded document ? |
+groups | `Array<String>` | Explicit | `['Les cuisiniers du coeur']` | | Depending on chosen database, it is wether a key, a ref or an embedded document ? |
+cookbooks | `Array<String>` | One or several cookbooks | `['Les recettes de ma grand-mere']` | | Depending on chosen database, it is wether a key, a ref or an embedded document ? |
+
+JSON example of a user
+
+```json
+{
+    "email": "foo@bar.com",
+    "name": "Patrick Moreau",
+    "password": "sd$%12s4sdfPv45",
+    "followers": ["Martin Moreau"],
+    "following": ["Georgette Moreau"],
+    "groups": ["Les cuisiniers du coeur"],
+    "cookbooks": ["Les recettes de ma grand-mere"],
+    "createdAt": "2004-04-28T08:56:00+02:00",
 }
 ```
