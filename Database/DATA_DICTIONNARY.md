@@ -4,7 +4,7 @@ Topic discussed in [related issue](https://github.com/Oppskrift/oppskrift_api/is
 ## Recipe
 
 Property | Type | Description | Examples | Is calculated (not persisted) | Comments |
------------- | ------------- | ------------- | ------------- | ------------- |
+------------ | ------------- | ------------- | ------------- | ------------- | ----- |
 name | `String` | Explicit | `Avocado toast` | |  |
 author | `String` | Explicit | `Martin` |  |  |
 description | `String` | Explicit | `Some dummy description...` |  | Optional |
@@ -26,8 +26,8 @@ dateModified | `Date` | Explicit | --- |  |  |
 datePublished | `Date` | Explicit | --- |  |  |
 discussionUrl | `String` | Explicit | `http://dummy-url` | ✔️ |
 language | language in `IETF BCP 47` Standard | Explicit | `fr-fr` |  |
-isFamilyFriendly | `Boolean` | Is the content of the recipe limited to an adult audience (false) or is it ok for a family audience (true) | `false` |  | Let's not fool ourselves, dick-shaped recipes (pictures) and unthinkable ingredients can be published by anyone |
-isPartOf | ??? | Need insights here too | --- | --- | Is discussed for now |
+isFamilyFriendly | `Boolean` | Is the content of the recipe limited to an adult audience (false) or is it ok for a family audience (true) | `false` |  |  |
+isPartOf | `String or Array<String>` | This recipe is part of an other recipe | `spaghetti bolognese` |  |  |
 
 JSON example of a recipe
 ```json
