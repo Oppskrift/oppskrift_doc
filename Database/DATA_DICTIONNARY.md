@@ -10,24 +10,28 @@ author | `String` | Explicit | `Martin` |  |  |
 description | `String` | Explicit | `Some dummy description...` |  | Optional |
 image | `String or Array<String>` | Explicit | `dummyUrl` |  | Single url or array of urls, Optional |
 cookTime | Duration in `ISO` format | Explicit | `PT40M` | Optional |
+prepTime | Duration in `ISO` format | Explicit | `3600` |  |  |
+waitTime | Duration in `ISO` format | Explicit | `3600` |  | Optional |
+totalTime | Duration in `ISO` format | Explicit | `3600` | ✔️ | =cookTime+prepTime+waitTime | 
 recipeCategory | `String or Array<String>` | Explicit | `dessert` |  |  |
 recipeCuisine | `String` | type of cuisine (French, Mexican, …) | `Japanese` |  | Optional |
-recipeIngredients | `Array<String or Object>` | List of ingredients | `['salt', 'pepper', ' 1 cucumber', '200ml milk']` | Is it raw ingredient or is it computed one with qty and unit ? |
+recipeIngredient | `Array<String or Object>` | List of ingredients | `['salt', 'pepper', ' 1 cucumber', '200ml milk']` | Is it raw ingredient or is it computed one with qty and unit ? |
 recipeInstructions | `Array<String>` | Explicit | `['wash salad', 'cut salad']` |  |  |
 recipeYield | `String` | quantity produced (number of servings, number of people) | `1 loaf`, `300g of salad`, `12 servings` or `4 personnes` |  |  |
 suitableForDiet | `Array<String>` | Explicit | `['vegan', 'gluten free']` |  | Optional |
-prepTime | Duration in `ISO` format | Explicit | `3600` |  |  |
-waitTime | Duration in `ISO` format | Explicit | `3600` |  | Optional |
 url | `String` | Explicit | `http://dummy-url` | ✔️ | Only for JSON-LD |
 tools | `Array<String>` | Cooking tool to perform recipe | `['oven', 'mixer']` |  | Optional |
-totalTime | Duration in `ISO` format | Explicit | `3600` | ✔️ | =cookTime+prepTime+waitTime | 
 dateCreated | `Date` | Explicit | --- |  |  |
 dateModified | `Date` | Explicit | --- |  |  |
 datePublished | `Date` | Explicit | --- |  |  |
 discussionUrl | `String` | Explicit | `http://dummy-url` | ✔️ |
-language | language in `IETF BCP 47` Standard | Explicit | `fr-fr` |  |
 isFamilyFriendly | `Boolean` | Is the content of the recipe limited to an adult audience (false) or is it ok for a family audience (true) | `false` |  |  |
 isPartOf | `String or Array<String>` | This recipe is part of an other recipe | `spaghetti bolognese` |  |  |
+isBasedOn | Link to another inspired Recipe, useful to fork Recipes I guess
+inLanguage | language in `IETF BCP 47` Standard | Explicit | `fr-fr` |  |
+comment | `Array<String>` | Comments, typically from users. |  |  |  |
+commentCount | `Integer` | Number of comments |  | ✔️ |  |
+creativeWorkStatus | Draft, Published, Deleted |  | ✔️ | The values here are arbitrary regarding our own cycles of publications |
 
 JSON example of a recipe
 
